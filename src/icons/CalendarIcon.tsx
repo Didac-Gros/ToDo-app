@@ -5,11 +5,11 @@ export function CalendarIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       width="24"
       height="24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     >
       <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
       <path d="M16 3v4"></path>

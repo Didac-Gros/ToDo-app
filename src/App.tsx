@@ -14,7 +14,7 @@ function App() {
         <Aside></Aside>
       </aside>
 
-      <main className="[grid-area:main]">
+      <main className="[grid-area:main] px-8 pb-8 pt-5">
         <Main></Main>
       </main>
     </div>
