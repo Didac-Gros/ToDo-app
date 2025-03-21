@@ -20,7 +20,7 @@ export function Main() {
   const articles: ArticleTask[] = [
     {
       title: "Create a new design",
-      description: "Create a new design for the website",
+      description: "Create a new design for the website", 
       priority: "important",
       status: "completed",
       date: new Date(),

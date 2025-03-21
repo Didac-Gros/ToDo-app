@@ -12,3 +12,9 @@ export interface CompletedTask {
   date: Date;
   image: string;
 }
+
+export enum TaskPriority {
+  EXTREME = "Extreme",
+  MODERATE = "Moderate",
+  LOW = "Low",
+}
