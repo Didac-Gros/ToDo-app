@@ -1,8 +1,8 @@
-export interface ArticleTask {
+export interface Task {
   title: string;
   description: string;
-  priority: "secundary" | "moderate" | "important";
-  status: "completed" | "in-progress" | "not-started";
+  priority: TaskPriority;
+  status: TaskStatus;
   date: Date;
   image: string;
 }
@@ -17,4 +17,10 @@ export enum TaskPriority {
   EXTREME = "Extreme",
   MODERATE = "Moderate",
   LOW = "Low",
+}
+
+export enum TaskStatus {
+  COMPLETED = "Completed",
+  IN_PROGRESS = "In-progress",
+  NOT_STARTED = "Not-started",
 }

@@ -5,11 +5,17 @@ import { GrStatusUnknown } from "react-icons/gr";
 import { BiTask } from "react-icons/bi";
 import { FaPlus } from "react-icons/fa6";
 import { ToDoArticle } from "./ToDoArticle";
-import { ArticleTask, CompletedTask } from "../../types/global";
+import {
+  Task,
+  CompletedTask,
+  TaskPriority,
+  TaskStatus,
+} from "../../types/global";
 import CircularProgress from "./CircularProgress";
 import { CompletedTaskArticle } from "./CompletedTaskArticle";
 import { useState } from "react";
 import { TaskForm } from "../addTask/TaskForm";
+import { primaryColor } from "../../utils/constants";
 
 export function Main() {
   const today = new Date();
@@ -17,28 +23,28 @@ export function Main() {
   const monthName = today.toLocaleDateString("en-US", { month: "long" });
   const [showModal, setShowModal] = useState(false);
 
-  const articles: ArticleTask[] = [
+  const articles: Task[] = [
     {
       title: "Create a new design",
-      description: "Create a new design for the website", 
-      priority: "important",
-      status: "completed",
+      description: "Create a new design for the website",
+      priority: TaskPriority.EXTREME,
+      status: TaskStatus.COMPLETED,
       date: new Date(),
       image: "/articles/birthday.webp",
     },
     {
       title: "Create a new design",
       description: "Create a new design for the website",
-      priority: "important",
-      status: "in-progress",
+      priority: TaskPriority.MODERATE,
+      status: TaskStatus.IN_PROGRESS,
       date: new Date(), // ✅ Correcto
       image: "/articles/birthday.webp",
     },
     {
       title: "Create a new design",
       description: "Create a new design for the website",
-      priority: "important",
-      status: "in-progress",
+      priority: TaskPriority.EXTREME,
+      status: TaskStatus.IN_PROGRESS,
       date: new Date(), // ❌ Estaba incorrecto en tu código
       image: "/articles/birthday.webp",
     },
@@ -65,10 +71,6 @@ export function Main() {
     },
   ];
 
-  function handleShowModal() {
-    setShowModal(true);
-  }
-
   return (
     <main className="py-8 px-16">
       <MainHeader></MainHeader>
@@ -79,13 +81,16 @@ export function Main() {
               title="To-do"
               icon={<TbCalendarTime size={30} color="gray" />}
             ></SectionTitle>
-            <button className="flex flex-row gap-2 items-center pr-10" onClick={handleShowModal}>
-              <FaPlus color={"#ff6867"} />
-              <p className="text-gray-500/70">Add task</p>
+            <button
+              className={`flex flex-row gap-2 items-center px-10 cursor-pointer text-[${primaryColor}] [&>p]:text-gray-500/70 hover:[&>p]:text-white hover:text-white hover:bg-[${primaryColor}] rounded-lg transition-all duration-200`}
+              onClick={() => setShowModal(true)}
+            >
+              <FaPlus />
+              <p>Add task</p>
             </button>
           </div>
 
-          <TaskForm></TaskForm>
+          {showModal && <TaskForm setShowModal={setShowModal}></TaskForm>}
 
           <div className="flex flex-row gap-2 m-1 mt-2 text-sm mb-4">
             <p>
@@ -96,7 +101,6 @@ export function Main() {
 
           <ToDoArticle articleTask={articles[0]}></ToDoArticle>
           <ToDoArticle articleTask={articles[1]}></ToDoArticle>
-          <ToDoArticle articleTask={articles[2]}></ToDoArticle>
           <hr className="my-10 text-gray-400" />
           <ToDoArticle articleTask={articles[2]}></ToDoArticle>
         </section>

@@ -1,41 +1,44 @@
-import { useState } from "react";
 import { InputTask } from "./InputTask";
 import { PriorityCheck } from "./PriorityCheck";
 import { UploadImage } from "./UploadImage";
 import { TaskPriority } from "../../types/global";
+import { useCreateTask } from "../../hooks/useCreateTask";
 
-export function TaskForm() {
-  const [title, setTitle] = useState<string>("");
-  const [date, setDate] = useState<Date | null>(null);
-  const [description, setDescription] = useState<string>("");
-  const [priority, setPriority] = useState<TaskPriority | null>(null);
-  const [image, setImage] = useState<File | null>(null);
-  const [errorDate, setErrorDate] = useState<string>("");
-  const [error, setError] = useState<boolean>(false);
+interface TaskFormProps {
+  setShowModal: (show: boolean) => void;
+}
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(e.target.value);
-    if (new Date() > newDate) {
-      setErrorDate("Please select a future date");
-    }
-    // if(e.target.value) setDate(new Date(e.target.value));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(true);
-  };
+export function TaskForm({ setShowModal }: TaskFormProps) {
+  const {
+    title,
+    date,
+    description,
+    priority,
+    image,
+    errorDate,
+    error,
+    setTitle,
+    handleDateChange,
+    setDescription,
+    setPriority,
+    setImage,
+    handleSubmit,
+  } = useCreateTask({ setShowModal });
 
   return (
     <div className="fixed inset-0 flex items-center justify-center  bg-black/50">
-      <div className="bg-white p-12 rounded-lg shadow-lg w-220 h-170">
-        <header className="flex justify-between mb-7 font-semibold text-lg">
+      <div className="bg-white p-12 pt-7 rounded-lg shadow-lg w-220 h-175">
+        <header className="flex justify-between mb-5 font-semibold text-lg">
           <div className="flex">
-            <p className="underline ">Add new ta</p>
+            <p className="underline">Add new ta</p>
             <span className="">sk</span>
           </div>
-
-          <p className="underline">Go back</p>
+          <button
+            className="cursor-pointer hover:text-black/70"
+            onClick={() => setShowModal(false)}
+          >
+            <p className="underline">Go back</p>
+          </button>
         </header>
         <main className=" border-1 border-gray-400 p-4 rounded-md">
           <form
@@ -77,6 +80,9 @@ export function TaskForm() {
                 onCheckChange={() => setPriority(TaskPriority.LOW)}
               ></PriorityCheck>
             </div>
+            <p className="text-xs text-red-500">
+              {error && !priority ? "Choose priority" : ""}
+            </p>
             <div className="flex gap-7 h-auto">
               <div className="flex-1">
                 <InputTask
@@ -86,12 +92,16 @@ export function TaskForm() {
                   error={error && description === ""}
                 ></InputTask>
               </div>
-              <UploadImage onFileUpload={() => {}}></UploadImage>
+              <UploadImage
+                onFileUpload={(file: File) => setImage(file)}
+                error={error && image === null}
+                image={image}
+              ></UploadImage>
             </div>
 
             <button
               type="submit"
-              className="self-start bg-orange-500 hover:bg-orange-400 cursor-pointer text-white  rounded-lg px-6 py-1 mt-5"
+              className="self-start bg-orange-500 hover:bg-orange-400 cursor-pointer text-white  rounded-lg px-6 py-1 mt-2"
             >
               Done
             </button>

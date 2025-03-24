@@ -18,12 +18,14 @@
     "react-icons": "^5.5.0",
     "react-modal": "^3.16.3",
     "tailwindcss": "^4.0.4",
-    "todo-app": "file:"
+    "todo-app": "file:",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react-hooks": "^5.0.0",
