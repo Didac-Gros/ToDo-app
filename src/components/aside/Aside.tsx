@@ -6,20 +6,14 @@ import { RiMenuFold2Line } from "react-icons/ri";
 import { IoMdSettings } from "react-icons/io";
 import { IoIosHelpCircle } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import { useState } from "react";
+import { ScreenType } from "../../types/global";
 
-type itemsTab =
-  | "Dashboard"
-  | "Vital task"
-  | "My task"
-  | "Task categories"
-  | "Settings"
-  | "Help"
-  | "Logout";
+interface AsideProps {
+  activeScreen: ScreenType;
+  setActiveScreen: (tab: ScreenType) => void;
+}
 
-export function Aside() {
-  const [activeTab, setActiveTab] = useState<itemsTab>("Dashboard");
-
+export function Aside({ activeScreen, setActiveScreen }: AsideProps) {
   return (
     <main className="relative w-full h-full flex flex-col items-center">
       <div className="absolute left-1/2 transform -translate-x-1/2">
@@ -39,43 +33,43 @@ export function Aside() {
           <ul className="flex flex-col gap-1 px-6">
             <ListItem
               title="Dashboard"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("Dashboard")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.DASHBOARD)}
             >
               <MdDashboard size={25} />
             </ListItem>
             <ListItem
               title="Vital task"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("Vital task")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.VITAL_TASKS)}
             >
               <FaExclamation size={25} />
             </ListItem>
             <ListItem
               title="My task"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("My task")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.MY_TASKS)}
             >
               <BiTask size={25} />
             </ListItem>
             <ListItem
               title="Task categories"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("Task categories")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.TASK_CATEGORIES)}
             >
               <RiMenuFold2Line size={25} />
             </ListItem>
             <ListItem
               title="Settings"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("Settings")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.SETTINGS)}
             >
               <IoMdSettings size={25} />
             </ListItem>
             <ListItem
               title="Help"
-              activeTab={activeTab}
-              handleClick={() => setActiveTab("Help")}
+              activeScreen={activeScreen}
+              handleClick={() => setActiveScreen(ScreenType.HELP)}
             >
               <IoIosHelpCircle size={25} />
             </ListItem>
@@ -84,8 +78,8 @@ export function Aside() {
         <footer className="mt-auto mb-10 px-6">
           <ListItem
             title="Logout"
-            activeTab={activeTab}
-            handleClick={() => setActiveTab("Logout")}
+            activeScreen={activeScreen}
+            handleClick={() => setActiveScreen(ScreenType.LOGOUT)}
           >
             <MdLogout size={25} />
           </ListItem>

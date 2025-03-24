@@ -1,4 +1,5 @@
 export interface Task {
+  id?: string;
   title: string;
   description: string;
   priority: TaskPriority;
@@ -23,4 +24,14 @@ export enum TaskStatus {
   COMPLETED = "Completed",
   IN_PROGRESS = "In-progress",
   NOT_STARTED = "Not-started",
+}
+
+export enum ScreenType {
+  DASHBOARD = "Dashborad",
+  VITAL_TASKS = "Vital Tasks",
+  MY_TASKS = "My Tasks",
+  TASK_CATEGORIES = "Task Categories",
+  SETTINGS = "Settings",
+  HELP = "Help",
+  LOGOUT = "Logout",
 }

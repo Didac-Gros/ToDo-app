@@ -15,9 +15,9 @@ import CircularProgress from "./CircularProgress";
 import { CompletedTaskArticle } from "./CompletedTaskArticle";
 import { useState } from "react";
 import { TaskForm } from "../addTask/TaskForm";
-import { primaryColor } from "../../utils/constants";
+import { PRIMARY_COLOR } from "../../utils/constants";
 
-export function Main() {
+export function DashboardScreen() {
   const today = new Date();
   const dayNumber = today.getDate();
   const monthName = today.toLocaleDateString("en-US", { month: "long" });
@@ -72,7 +72,7 @@ export function Main() {
   ];
 
   return (
-    <main className="py-8 px-16">
+    <main className="">
       <MainHeader></MainHeader>
       <div className="grid grid-cols-[1.1fr_1fr]  gap-4 p-4 h-screen border-1 border-gray-300 mt-8">
         <section className=" bg-white p-4 rounded-lg shadow-lg">
@@ -82,7 +82,7 @@ export function Main() {
               icon={<TbCalendarTime size={30} color="gray" />}
             ></SectionTitle>
             <button
-              className={`flex flex-row gap-2 items-center px-10 cursor-pointer text-[${primaryColor}] [&>p]:text-gray-500/70 hover:[&>p]:text-white hover:text-white hover:bg-[${primaryColor}] rounded-lg transition-all duration-200`}
+              className={`flex flex-row gap-2 items-center px-10 cursor-pointer text-[${PRIMARY_COLOR}] [&>p]:text-gray-500/70 hover:[&>p]:text-white hover:text-white hover:bg-[${PRIMARY_COLOR}] rounded-lg transition-all duration-200`}
               onClick={() => setShowModal(true)}
             >
               <FaPlus />

@@ -12,7 +12,7 @@ export function MainHeader() {
       <h1 className="text-4xl font-semibold">Welcome back, Sundar 👋</h1>
       <div className="flex flex-row gap-2 mt-8">
         {avatars.map((avatar) => (
-          <div className="bg-black/70 rounded-lg p-1">
+          <div  className="bg-black/70 rounded-lg p-1">
             <FriendImage image={avatar}></FriendImage>
           </div>
         ))}
